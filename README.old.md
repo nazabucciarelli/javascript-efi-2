@@ -3,17 +3,24 @@ This repository stores the second part of the Final Integrated Evaluation in the
 
 ## Some functionalities
 
-
-
+  - Compulsory login to access the site.
+  - Data consumed from jsonplaceholder.typicode.com/todos
+  - Capability of defining the amount of tasks to show.
+  - Dark and light themes.
+  - Responsive behavior.
 
 ## Running the project
 
-In the project directory, you can run:
+After clonning this repository, in the project directory, you will need to run:
+
+### `npm install`
+
+In order to install necessary dependencies. Then execute the following:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+That runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload if you make changes.
+
