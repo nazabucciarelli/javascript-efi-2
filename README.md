@@ -20,7 +20,13 @@ After clonning this repository, in the project directory, you will need to run:
 
 ### `npm install`
 
-In order to install necessary dependencies. Then execute the following:
+In order to install node modules for the project. 
+Then execute the following for the Material UI framework and routing dependencies:
+
+### `npm install @mui/material @emotion/react @emotion/styled`
+### `npm install react-router-dom`
+
+Finally, execute:
 
 ### `npm start`
 
