@@ -9,6 +9,11 @@ This repository stores the second part of the Final Integrated Evaluation in the
   - Dark and light themes.
   - Responsive behavior.
 
+## Technologies used
+
+  - React
+  - Material UI
+
 ## Running the project
 
 After clonning this repository, in the project directory, you will need to run:
@@ -24,3 +29,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload if you make changes.
 
+
+## Authors
+
+- [@Nazareno Bucciarelli](https://github.com/nazabucciarelliITEC) (n.bucciarelli@itecriocuarto.org.ar)
+- [@Facundo Lemo](https://github.com/FacundoEsteban-Lemo) (f.lemo@itecriocuarto.org.ar)
