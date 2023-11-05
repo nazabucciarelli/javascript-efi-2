@@ -8,6 +8,7 @@ import Select from '@mui/material/Select';
 export default function BasicSelect(props) {
   const handleChange = (event) => {
     props.setSizePage(event.target.value);
+    props.setNumPage(1);
   };
 
   return (

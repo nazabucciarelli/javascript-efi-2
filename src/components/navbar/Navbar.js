@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
+import Switch from '@mui/joy/Switch';
+import DarkMode from '@mui/icons-material/DarkMode';
 
 const pages = ['Home', 'Contact', '404'];
 const pagesUrls = ['/home','/contact','/404']
@@ -23,6 +25,24 @@ const settingsFuncs = [logout]
 function logout () {
     console.log("test")
 }
+
+function SwitchDarkMode() {
+  return (
+    <Switch
+      size="lg"
+      slotProps={{
+        input: { 'aria-label': 'Dark mode' },
+        thumb: {
+          children: <DarkMode />,
+        },
+      }}
+      sx={{
+        '--Switch-thumbSize': '24px',
+      }}
+    />
+  );
+}
+
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -130,6 +150,9 @@ function Navbar() {
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
+                            <MenuItem>
+                                <SwitchDarkMode></SwitchDarkMode>
+                            </MenuItem>
                         </Menu>
                     </Box>
                 </Toolbar>
