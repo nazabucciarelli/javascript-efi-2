@@ -1,0 +1,19 @@
+.chevron{
+    font-size: 3em !important;
+    color: rgb(40, 40, 39);
+    transition: 0.3s !important;
+}
+
+.chevron:hover{
+    transition: 0.3s;
+    cursor: pointer;
+    transform: scale(130%);
+}   
+
+.disabled{
+    color: rgb(145, 145, 145);
+}
+.disabled:hover{
+    transform: none;
+    cursor: default;
+}

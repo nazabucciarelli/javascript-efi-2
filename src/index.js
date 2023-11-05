@@ -7,8 +7,10 @@ import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
-import Login from './pages/Login';
-import Home from './pages/Home';
+import Login from './pages/login/Login';
+import Home from './pages/home/Home';
+import NotFound from './pages/not_found/NotFound';
+import Contact from './pages/contact/Contact';
 
 const router = createBrowserRouter([
     {
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/contact",
-        element: <Login></Login>,
+        element: <Contact></Contact>,
+    },
+    {
+        path:"*",
+        element: <NotFound></NotFound>
     }
 ]);
 

@@ -1,0 +1,21 @@
+.check{
+    color: green;
+    margin:5px;
+}
+
+.cross{
+    color: red;
+    margin:5px;
+}
+
+.card{
+    display: inline-block;
+    border: 1px solid rgb(148, 148, 148);
+    margin: 0.5em;
+    width: 20vh;
+    height: 30vh;
+}
+
+.card:hover{
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.246);
+}
