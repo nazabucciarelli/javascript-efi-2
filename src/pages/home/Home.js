@@ -44,10 +44,10 @@ export default function Home() {
                 spacing={0}
                 direction="row"
                 alignItems="center"
-                justifyContent="start"
-                sx={{ mt: '20px',paddingLeft:'20px'}}
+                justifyContent="end"
+                sx={{ mt: '20px',paddingRight:'6em'}}
             >
-                <Select sizePage={sizePage} setSizePage={setSizePage}>
+                <Select sizePage={sizePage} setSizePage={setSizePage} setNumPage={setNumPage}>
                 </Select>
             </Grid>
             <Grid sx={{ mt: 1.0 }} container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -66,7 +66,7 @@ export default function Home() {
                 direction="row"
                 alignItems="center"
                 justifyContent="center"
-                sx={{ mt: '35px' }}
+                sx={{ mt: '35px', mb:'35px' }}
             >
                 <ChevronLeftIcon className={numPage !== 1 ? "chevron" : "chevron disabled"}
                     onClick={() => numPage !== 1 ? setNumPage(numPage - 1) : ''}></ChevronLeftIcon>
