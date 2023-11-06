@@ -29,14 +29,13 @@ const settingsFuncs = [, somethingElse]
 
 function somethingElse() {
     console.log("Something Else!")
-
 }
 
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -56,7 +55,7 @@ function Navbar() {
     const { logged, setLogged } = useContext(LoginContext)
     const logOut = () => {
         setLogged(false)
-        //window.location.reload(false);
+        navigate("/")
     }
 
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
