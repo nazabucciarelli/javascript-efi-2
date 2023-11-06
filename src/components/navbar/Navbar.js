@@ -15,7 +15,7 @@ import './Navbar.css'
 import Switch from '@mui/joy/Switch';
 import DarkMode from '@mui/icons-material/DarkMode';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
 
@@ -23,14 +23,12 @@ const pages = ['Home', 'Contact', '404'];
 const pagesUrls = ['/home','/contact','/404']
 
 
-const settings = ['Logout'];
-const settingsFuncs = [logout]
+const settings = ['Logout','Something Else'];
+const settingsFuncs = [,somethingElse]
 
-function logout() {
-    //const {logged, setLogged} = useContext(LoginContext)
-   // const validateUser = () => {(logged && setLogged(false))}
-    //const {logged, setLogged} = useContext(LoginContext)
-    console.log("test")
+function somethingElse() {
+    console.log("Something Else!")
+
 }
 
 function SwitchDarkMode() {
@@ -70,6 +68,14 @@ function Navbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const {logged, setLogged} = useContext(LoginContext)
+    const logOut = () => {
+        console.log(logged)
+        setLogged(false)
+        window.location.reload(false);
+        }
+
 
     return (
         <AppBar position="static">
@@ -157,7 +163,7 @@ function Navbar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting,index) => (
-                                <MenuItem key={setting} onClick={settingsFuncs[index]}>
+                                <MenuItem key={setting} onClick={setting=='Logout' ? logOut : settingsFuncs[index]}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
