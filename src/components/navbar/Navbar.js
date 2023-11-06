@@ -11,18 +11,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import './Navbar.css'
 import Switch from '@mui/joy/Switch';
 import DarkMode from '@mui/icons-material/DarkMode';
 
+import { Link } from 'react-router-dom';
+import { LoginContext } from '../../contexts/LoginContext';
+import { useContext } from 'react';
+
 const pages = ['Home', 'Contact', '404'];
 const pagesUrls = ['/home','/contact','/404']
+
 
 const settings = ['Logout'];
 const settingsFuncs = [logout]
 
-function logout () {
+function logout() {
+    //const {logged, setLogged} = useContext(LoginContext)
+   // const validateUser = () => {(logged && setLogged(false))}
+    //const {logged, setLogged} = useContext(LoginContext)
     console.log("test")
 }
 
@@ -47,6 +54,7 @@ function SwitchDarkMode() {
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -96,10 +104,13 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
+                            {pages.map((page, index) => (
+                                <Link key={page} className="link" to={pagesUrls[index]}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page}</Typography>
+                                    </MenuItem>
+                                </Link>
+                                
                             ))}
                         </Menu>
                     </Box>

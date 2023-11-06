@@ -6,6 +6,8 @@ import Select from "../../components/select/Select"
 import { Grid, Typography } from "@mui/material";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { LoginContext } from '../../contexts/LoginContext';
+import { useContext } from 'react';
 import './Home.css'
 
 export default function Home() {
@@ -14,6 +16,7 @@ export default function Home() {
     const [tasks, setTasks] = useState([]);
     const [numPage, setNumPage] = useState(1);
     const [sizePage, setSizePage] = useState(10);
+    const {logged, setLogged} = useContext(LoginContext);
 
     const from = (numPage - 1) * sizePage
     const to = numPage * sizePage
@@ -22,13 +25,15 @@ export default function Home() {
     const lastPage = Math.ceil(tasks.length / sizePage);
 
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("authenticated");
-        if (loggedInUser) {
-            setAuthenticated(loggedInUser);
+        console.log("Use state de home. Logeado?:",logged)
+        if (logged) {
+            console.log('entró el logeado')
         } else {
             navigate("/")
         }
     }, [navigate]);
+
+
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos')

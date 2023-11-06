@@ -10,6 +10,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from '../../components/alert_dialog/AlertDialog';
+import { LoginContext } from '../../contexts/LoginContext';
+import { useContext } from 'react';
+
+const USER="admin"
+const PASSWORD="admin"
 
 function Copyright(props) {
   return (
@@ -29,11 +34,13 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
-  const [, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
+  const {logged, setLogged} = useContext(LoginContext)
+
   
   useEffect(() =>{
-    const loggedInUser = localStorage.getItem("authenticated");
-    if(loggedInUser){
+    console.log('useEffect. Estado actual del user:',logged)
+
+    if(logged){
       navigate("/home");
     }
   },[navigate])
@@ -44,9 +51,8 @@ export default function Login() {
   };
 
   const validateUser = () => {
-    if (username === "usuario" && password === "demo") {
-      setAuthenticated(true)
-      localStorage.setItem("authenticated", true);
+    if (username === USER && password === PASSWORD) {
+      setLogged(true);
       navigate("/home");
     } else {
       setOpenDialog(true)

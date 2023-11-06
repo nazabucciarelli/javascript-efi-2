@@ -11,6 +11,7 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import NotFound from './pages/not_found/NotFound';
 import Contact from './pages/contact/Contact';
+import { LoginContextProvider } from './contexts/LoginContext';
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    <LoginContextProvider>
     <RouterProvider router={router} />
+    </LoginContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
