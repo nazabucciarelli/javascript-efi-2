@@ -18,34 +18,18 @@ import DarkMode from '@mui/icons-material/DarkMode';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
+import { DarkModeContext } from '../../contexts/DarkThemeContext';
 
 const pages = ['Home', 'Contact', '404'];
-const pagesUrls = ['/home','/contact','/404']
+const pagesUrls = ['/home', '/contact', '/404']
 
 
-const settings = ['Logout','Something Else'];
-const settingsFuncs = [,somethingElse]
+const settings = ['Logout', 'Something Else'];
+const settingsFuncs = [, somethingElse]
 
 function somethingElse() {
     console.log("Something Else!")
 
-}
-
-function SwitchDarkMode() {
-  return (
-    <Switch
-      size="lg"
-      slotProps={{
-        input: { 'aria-label': 'Dark mode' },
-        thumb: {
-          children: <DarkMode />,
-        },
-      }}
-      sx={{
-        '--Switch-thumbSize': '24px',
-      }}
-    />
-  );
 }
 
 
@@ -69,16 +53,17 @@ function Navbar() {
         setAnchorElUser(null);
     };
 
-    const {logged, setLogged} = useContext(LoginContext)
+    const { logged, setLogged } = useContext(LoginContext)
     const logOut = () => {
-        console.log(logged)
         setLogged(false)
-        window.location.reload(false);
-        }
+        //window.location.reload(false);
+    }
+
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
 
     return (
-        <AppBar position="static">
+        <AppBar style={{ background: `${darkMode ? '#404258' : ''}` }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -116,12 +101,12 @@ function Navbar() {
                                         <Typography textAlign="center">{page}</Typography>
                                     </MenuItem>
                                 </Link>
-                                
+
                             ))}
                         </Menu>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page,index) => (
+                        {pages.map((page, index) => (
                             <Link key={index} className="link" to={pagesUrls[index]}>
                                 <Button
                                     key={page}
@@ -136,7 +121,7 @@ function Navbar() {
                         ))}
                     </Box>
                     <Box>
-                        <Typography sx={{ mr: '10px', mt:'5px' }} textAlign="center">Welcome user!</Typography>
+                        <Typography sx={{ mr: '10px', mt: '5px' }} textAlign="center">Welcome user!</Typography>
 
                     </Box>
 
@@ -162,13 +147,25 @@ function Navbar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting,index) => (
-                                <MenuItem key={setting} onClick={setting=='Logout' ? logOut : settingsFuncs[index]}>
+                            {settings.map((setting, index) => (
+                                <MenuItem key={setting} onClick={setting == 'Logout' ? logOut : settingsFuncs[index]}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem>
-                                <SwitchDarkMode></SwitchDarkMode>
+                                    <Switch
+                                        size="lg"
+                                        onClick={toggleDarkMode}
+                                        slotProps={{
+                                            input: { 'aria-label': 'Dark mode' },
+                                            thumb: {
+                                                children: <DarkMode />,
+                                            },
+                                        }}
+                                        sx={{
+                                            '--Switch-thumbSize': '24px',
+                                        }}
+                                    />
                             </MenuItem>
                         </Menu>
                     </Box>

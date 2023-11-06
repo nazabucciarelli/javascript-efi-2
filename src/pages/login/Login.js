@@ -38,11 +38,8 @@ export default function Login() {
 
   
   useEffect(() =>{
-    console.log('useEffect. Estado actual del user:',logged)
-
-    if(logged){
-      navigate("/home");
-    }
+    (logged && navigate("/home"))
+    console.log('useEffect Login. Estado actual del user:',logged)
   },[navigate])
 
   const handleSubmit = (event) => {

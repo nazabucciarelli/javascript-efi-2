@@ -10,12 +10,8 @@ export default function Contact(){
     const {logged, setLogged} = useContext(LoginContext)
 
     useEffect(() => {
-        console.log("Use state de home. Logeado?:",logged)
-        if (logged) {
-            console.log('logeado bien')
-        } else {
-            navigate("/")
-        }
+        (!logged && navigate("/"))
+        console.log("Use state de Contact. Logeado?:",logged)
     }, [navigate]);
 
     return (<>

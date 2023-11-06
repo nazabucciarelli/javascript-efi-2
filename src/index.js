@@ -12,6 +12,7 @@ import Home from './pages/home/Home';
 import NotFound from './pages/not_found/NotFound';
 import Contact from './pages/contact/Contact';
 import { LoginContextProvider } from './contexts/LoginContext';
+import { DarkModeContextProvider } from './contexts/DarkThemeContext';
 
 const router = createBrowserRouter([
     {
@@ -35,7 +36,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <LoginContextProvider>
-    <RouterProvider router={router} />
+        <DarkModeContextProvider>
+            <RouterProvider router={router} />
+        </DarkModeContextProvider>
     </LoginContextProvider>
 );
 

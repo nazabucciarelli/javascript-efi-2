@@ -25,12 +25,8 @@ export default function Home() {
     const lastPage = Math.ceil(tasks.length / sizePage);
 
     useEffect(() => {
+        (!logged && navigate("/"))
         console.log("Use state de home. Logeado?:",logged)
-        if (logged) {
-            console.log('entró el logeado')
-        } else {
-            navigate("/")
-        }
     }, [navigate]);
 
 
