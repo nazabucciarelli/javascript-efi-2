@@ -11,9 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import AlertDialog from '../../components/alert_dialog/AlertDialog';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
+import DarkModeSwitch from '../../components/darkmode_switch/DarkModeSwitch';
+import { DarkModeContext } from '../../contexts/DarkThemeContext';
 
-const USER="admin"
-const PASSWORD="admin"
+const USER = "admin"
+const PASSWORD = "admin"
 
 function Copyright(props) {
   return (
@@ -31,13 +33,14 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
-  const {logged, setLogged} = useContext(LoginContext)
+  const { logged, setLogged, currentUser, setCurrentUser } = useContext(LoginContext);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     (logged && navigate("/home"))
-    console.log('useEffect Login. Estado actual del user:',logged)
-  },[navigate])
+    console.log('useEffect Login. Estado actual del user:', logged)
+  }, [navigate, logged])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,6 +50,7 @@ export default function Login() {
   const validateUser = () => {
     if (username === USER && password === PASSWORD) {
       setLogged(true);
+      setCurrentUser(username);
       navigate("/home");
     } else {
       setOpenDialog(true)
@@ -54,11 +58,10 @@ export default function Login() {
   }
 
   return (
-      <Container component="main" maxWidth="xs">
-        
+    <div className={darkMode?"container darkBackground":"container"}>
+      <Container maxWidth="xs">
         <Box
           sx={{
-            marginTop: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -100,11 +103,16 @@ export default function Login() {
             >
               Sign In
             </Button>
+            <Container>
+              <DarkModeSwitch toggleDarkMode={toggleDarkMode}></DarkModeSwitch>
+            </Container>
             <AlertDialog open={openDialog} setOpenDialog={setOpenDialog} msg="Incorrect username or password" title="Authentication failed"></AlertDialog>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+    </div>
+
   );
 }
 

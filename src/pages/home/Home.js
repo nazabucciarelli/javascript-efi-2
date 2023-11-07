@@ -9,13 +9,15 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
 import './Home.css'
+import { DarkModeContext } from "../../contexts/DarkThemeContext";
 
 export default function Home() {
     const navigate = useNavigate();
     const [tasks, setTasks] = useState([]);
     const [numPage, setNumPage] = useState(1);
     const [sizePage, setSizePage] = useState(10);
-    const {logged, setLogged} = useContext(LoginContext);
+    const {logged} = useContext(LoginContext);
+    const {darkMode,} = useContext(DarkModeContext)
 
     const from = (numPage - 1) * sizePage
     const to = numPage * sizePage
@@ -28,8 +30,6 @@ export default function Home() {
         console.log("Use state de home. Logeado?:",logged)
     }, [logged,navigate]);
 
-
-
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(doc => doc.json())
@@ -37,7 +37,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div>
+        <div className={darkMode?"main darkBackground":"main"}>
             <Navbar></Navbar>
             <Grid
                 container
@@ -47,7 +47,7 @@ export default function Home() {
                 justifyContent="end"
                 sx={{ mt: '20px',paddingRight:'6em'}}
             >
-                <Select sizePage={sizePage} setSizePage={setSizePage} setNumPage={setNumPage}>
+                <Select darkMode={darkMode} sizePage={sizePage} setSizePage={setSizePage} setNumPage={setNumPage}>
                 </Select>
             </Grid>
             <Grid sx={{ mt: 1.0 }} container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -66,11 +66,11 @@ export default function Home() {
                 direction="row"
                 alignItems="center"
                 justifyContent="center"
-                sx={{ mt: '35px', mb:'35px' }}
+                sx={{ mt: '35px', paddingBottom:"2em" }}
             >
                 <ChevronLeftIcon className={numPage !== 1 ? "chevron" : "chevron disabled"}
                     onClick={() => numPage !== 1 ? setNumPage(numPage - 1) : ''}></ChevronLeftIcon>
-                <Typography>Page N° {numPage} of {lastPage}</Typography>
+                <Typography color={darkMode?"common.white":""}>Page N° {numPage} of {lastPage}</Typography>
                 <ChevronRightIcon className={numPage !== lastPage ? "chevron" : "chevron disabled"}
                     onClick={() => numPage !== lastPage ? setNumPage(numPage + 1) : ''}></ChevronRightIcon>
             </Grid>

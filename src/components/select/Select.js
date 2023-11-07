@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import "./Select.css"
 
 export default function BasicSelect(props) {
   const handleChange = (event) => {
@@ -14,13 +15,12 @@ export default function BasicSelect(props) {
   return (
     <Box sx={{ minWidth: 160 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Tasks per page</InputLabel>
+        <InputLabel className={props.darkMode?"darkModeSelect":""}>Tasks per page</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           value={props.sizePage}
           label="Tasks per page"
           onChange={handleChange}
+          className={props.darkMode?"darkModeSelect":""}
         >
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={10}>10</MenuItem>

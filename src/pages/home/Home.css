@@ -1,6 +1,6 @@
 .chevron{
     font-size: 3em !important;
-    color: rgb(40, 40, 39);
+    color: rgba(0, 0, 0, 0.818);
     transition: 0.3s !important;
 }
 
@@ -11,9 +11,15 @@
 }   
 
 .disabled{
-    color: rgb(145, 145, 145);
+    color: rgb(118, 117, 117);
 }
 .disabled:hover{
     transform: none;
     cursor: default;
 }
+
+.darkBackground{
+    background-color: rgb(69, 69, 69) !important;
+}
+
+

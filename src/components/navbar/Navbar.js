@@ -12,25 +12,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css'
-import Switch from '@mui/joy/Switch';
-import DarkMode from '@mui/icons-material/DarkMode';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
 import { DarkModeContext } from '../../contexts/DarkThemeContext';
+import DarkModeSwitch from '../darkmode_switch/DarkModeSwitch';
 
 const pages = ['Home', 'Contact', '404'];
 const pagesUrls = ['/home', '/contact', '/404']
 
-
-const settings = ['Logout', 'Something Else'];
-const settingsFuncs = [, somethingElse]
-
-function somethingElse() {
-    console.log("Something Else!")
-}
-
+const settings = ['Logout'];
+const settingsFuncs = [, ]
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -59,10 +52,11 @@ function Navbar() {
     }
 
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
+    const { currentUser, } = useContext(LoginContext);
 
 
     return (
-        <AppBar style={{ background: `${darkMode ? '#404258' : ''}` }} position="static">
+        <AppBar className={darkMode?"darkNavbar":""} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -120,17 +114,18 @@ function Navbar() {
                         ))}
                     </Box>
                     <Box>
-                        <Typography sx={{ mr: '10px', mt: '5px' }} textAlign="center">Welcome user!</Typography>
+                        <Typography sx={{ mr: '10px', mt: '5px' }} textAlign="center">Welcome {currentUser}!</Typography>
 
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }} >
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="User" />
                             </IconButton>
                         </Tooltip>
                         <Menu
+                            
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -151,21 +146,7 @@ function Navbar() {
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
-                            <MenuItem>
-                                    <Switch
-                                        size="lg"
-                                        onClick={toggleDarkMode}
-                                        slotProps={{
-                                            input: { 'aria-label': 'Dark mode' },
-                                            thumb: {
-                                                children: <DarkMode />,
-                                            },
-                                        }}
-                                        sx={{
-                                            '--Switch-thumbSize': '24px',
-                                        }}
-                                    />
-                            </MenuItem>
+                            <DarkModeSwitch toggleDarkMode={toggleDarkMode}></DarkModeSwitch>
                         </Menu>
                     </Box>
                 </Toolbar>

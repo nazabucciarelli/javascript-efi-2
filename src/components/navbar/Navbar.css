@@ -1,3 +1,8 @@
 .link{
     text-decoration: none;
 }
+
+.darkNavbar {
+    background-color: rgb(32, 32, 32) !important;
+    transition: 0.3s !important;
+}
