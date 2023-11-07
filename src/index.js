@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
     createBrowserRouter,
     RouterProvider,
-  } from "react-router-dom";
+} from "react-router-dom";
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import NotFound from './pages/not_found/NotFound';
@@ -16,8 +15,8 @@ import { DarkModeContextProvider } from './contexts/DarkThemeContext';
 
 const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Login></Login>,
+        path: "/",
+        element: <Login></Login>,
     },
     {
         path: "/home",

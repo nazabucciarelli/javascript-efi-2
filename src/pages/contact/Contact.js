@@ -12,7 +12,7 @@ export default function Contact(){
     useEffect(() => {
         (!logged && navigate("/"))
         console.log("Use state de Contact. Logeado?:",logged)
-    }, [navigate]);
+    }, [logged,navigate]);
 
     return (<>
                 <Navbar></Navbar>

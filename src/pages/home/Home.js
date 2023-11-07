@@ -12,7 +12,6 @@ import './Home.css'
 
 export default function Home() {
     const navigate = useNavigate();
-    const [, setAuthenticated] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [numPage, setNumPage] = useState(1);
     const [sizePage, setSizePage] = useState(10);
@@ -27,7 +26,7 @@ export default function Home() {
     useEffect(() => {
         (!logged && navigate("/"))
         console.log("Use state de home. Logeado?:",logged)
-    }, [navigate]);
+    }, [logged,navigate]);
 
 
 

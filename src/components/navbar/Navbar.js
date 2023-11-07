@@ -53,9 +53,9 @@ function Navbar() {
     };
 
     const { logged, setLogged } = useContext(LoginContext)
+    
     const logOut = () => {
         setLogged(false)
-        navigate("/")
     }
 
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
