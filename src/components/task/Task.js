@@ -14,7 +14,7 @@ export default function BasicCard(props) {
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     Task N° {props.task.id}
                 </Typography>
-                <Typography variant="h5">
+                <Typography variant="h6">
                     {props.task.title}
                 </Typography>
             </CardContent>
