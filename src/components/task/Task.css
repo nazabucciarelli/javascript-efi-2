@@ -15,8 +15,8 @@
     border: 1px solid rgb(148, 148, 148);
     margin: 0.5em;
     width: 20vh;
-    height: 30vh;
     transition: 0.3s !important;
+    min-height: 27vh;
 }
 
 .card:hover{
