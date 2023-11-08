@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
     createBrowserRouter,
     RouterProvider,
-  } from "react-router-dom";
+} from "react-router-dom";
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import NotFound from './pages/not_found/NotFound';
 import Contact from './pages/contact/Contact';
+import { LoginContextProvider } from './contexts/LoginContext';
+import { DarkModeContextProvider } from './contexts/DarkThemeContext';
 
 const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Login></Login>,
+        path: "/",
+        element: <Login></Login>,
     },
     {
         path: "/home",
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <RouterProvider router={router} />
+    <LoginContextProvider>
+        <DarkModeContextProvider>
+            <RouterProvider router={router} />
+        </DarkModeContextProvider>
+    </LoginContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

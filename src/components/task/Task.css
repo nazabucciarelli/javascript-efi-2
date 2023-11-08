@@ -15,9 +15,16 @@
     border: 1px solid rgb(148, 148, 148);
     margin: 0.5em;
     width: 20vh;
+    transition: 0.3s !important;
     min-height: 27vh;
 }
 
 .card:hover{
-    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.246);
+    box-shadow: 5px 10px 25px rgba(0, 0, 0, 0.426);
+    transform: scale(104%);
+    transition: 0.3s !important;
+}
+
+.card-dark{
+    background-color: rgb(36, 36, 36) !important;
 }

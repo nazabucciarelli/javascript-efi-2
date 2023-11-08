@@ -1,20 +1,18 @@
 import { Button } from "@mui/material";
-import Navbar from "../../components/navbar/Navbar";
 import './NotFound.css'
 import notFound from "./notfound.png"
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { DarkModeContext } from "../../contexts/DarkThemeContext";
 
 export default function NotFound() {
+    const { darkMode } = useContext(DarkModeContext)
     return (
-        <>
-            <Navbar></Navbar>
-            <div className="container">
-                <img alt="404 not found" src={notFound}></img>
-                <Link to="/home">
-                    <Button variant="contained">Turn back to home</Button>
-                </Link>
-            </div>
-        </>
-
+        <div className={darkMode ? "container darkBackground" : "container"}>
+            <img alt="404 not found" src={notFound}></img>
+            <Link to="/home">
+                <Button variant={darkMode ? "contained" : "outlined"}>Return to home</Button>
+            </Link>
+        </div>
     )
 }

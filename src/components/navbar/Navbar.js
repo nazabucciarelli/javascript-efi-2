@@ -11,42 +11,26 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import './Navbar.css'
-import Switch from '@mui/joy/Switch';
-import DarkMode from '@mui/icons-material/DarkMode';
+
+import { Link } from 'react-router-dom';
+import { LoginContext } from '../../contexts/LoginContext';
+import { useContext } from 'react';
+import { DarkModeContext } from '../../contexts/DarkThemeContext';
+import DarkModeSwitch from '../darkmode_switch/DarkModeSwitch';
 
 const pages = ['Home', 'Contact', '404'];
-const pagesUrls = ['/home','/contact','/404']
+const pagesUrls = ['/home', '/contact', '/404']
 
 const settings = ['Logout'];
-const settingsFuncs = [logout]
-
-function logout () {
-    console.log("test")
-}
-
-function SwitchDarkMode() {
-  return (
-    <Switch
-      size="lg"
-      slotProps={{
-        input: { 'aria-label': 'Dark mode' },
-        thumb: {
-          children: <DarkMode />,
-        },
-      }}
-      sx={{
-        '--Switch-thumbSize': '24px',
-      }}
-    />
-  );
-}
-
+const settingsFuncs = []
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const { logged ,setLogged } = useContext(LoginContext)
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
+    const { currentUser } = useContext(LoginContext);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -62,9 +46,13 @@ function Navbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    
+    const logOut = () => {
+        setLogged(false)
+    }
 
     return (
-        <AppBar position="static">
+        <AppBar className={darkMode?"darkNavbar":""} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -96,15 +84,18 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
+                            {pages.map((page, index) => (
+                                <Link key={page} className="link" to={pagesUrls[index]}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page}</Typography>
+                                    </MenuItem>
+                                </Link>
+
                             ))}
                         </Menu>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page,index) => (
+                        {pages.map((page, index) => (
                             <Link key={index} className="link" to={pagesUrls[index]}>
                                 <Button
                                     key={page}
@@ -119,17 +110,18 @@ function Navbar() {
                         ))}
                     </Box>
                     <Box>
-                        <Typography sx={{ mr: '10px', mt:'5px' }} textAlign="center">Welcome user!</Typography>
+                        <Typography sx={{ mr: '10px', mt: '5px' }} textAlign="center">Welcome {currentUser}!</Typography>
 
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }} >
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="User" />
                             </IconButton>
                         </Tooltip>
                         <Menu
+                            
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -145,14 +137,12 @@ function Navbar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting,index) => (
-                                <MenuItem key={setting} onClick={settingsFuncs[index]}>
+                            {settings.map((setting, index) => (
+                                <MenuItem key={setting} onClick={setting === 'Logout' ? logOut : settingsFuncs[index]}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
-                            <MenuItem>
-                                <SwitchDarkMode></SwitchDarkMode>
-                            </MenuItem>
+                            <DarkModeSwitch toggleDarkMode={toggleDarkMode}></DarkModeSwitch>
                         </Menu>
                     </Box>
                 </Toolbar>
