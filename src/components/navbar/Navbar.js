@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css'
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContext';
 import { useContext } from 'react';
 import { DarkModeContext } from '../../contexts/DarkThemeContext';
@@ -23,12 +23,14 @@ const pages = ['Home', 'Contact', '404'];
 const pagesUrls = ['/home', '/contact', '/404']
 
 const settings = ['Logout'];
-const settingsFuncs = [, ]
+const settingsFuncs = []
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const navigate = useNavigate();
+    const { logged ,setLogged } = useContext(LoginContext)
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
+    const { currentUser } = useContext(LoginContext);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -44,16 +46,10 @@ function Navbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
-    const { logged, setLogged } = useContext(LoginContext)
     
     const logOut = () => {
         setLogged(false)
     }
-
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
-    const { currentUser, } = useContext(LoginContext);
-
 
     return (
         <AppBar className={darkMode?"darkNavbar":""} position="static">
@@ -142,7 +138,7 @@ function Navbar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting, index) => (
-                                <MenuItem key={setting} onClick={setting == 'Logout' ? logOut : settingsFuncs[index]}>
+                                <MenuItem key={setting} onClick={setting === 'Logout' ? logOut : settingsFuncs[index]}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}

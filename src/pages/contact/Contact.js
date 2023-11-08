@@ -8,7 +8,7 @@ import { DarkModeContext } from "../../contexts/DarkThemeContext";
 
 export default function Contact(){
     const navigate = useNavigate();
-    const {logged, setLogged} = useContext(LoginContext)
+    const {logged} = useContext(LoginContext)
     const {darkMode} = useContext(DarkModeContext)
 
     useEffect(() => {

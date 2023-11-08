@@ -18,8 +18,9 @@ const USER = "admin"
 const PASSWORD = "admin"
 
 function Copyright(props) {
+  const { darkMode } = useContext(DarkModeContext);
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2"  color={darkMode?"common.white":"text.secondary"} align="center" {...props}>
       {'Copyright © '}
 
       {new Date().getFullYear()}
@@ -69,7 +70,7 @@ export default function Login() {
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color={darkMode?"common.white":"text.secondaryn"}>
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -98,7 +99,7 @@ export default function Login() {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
+              variant={darkMode?"contained":"outlined"}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
