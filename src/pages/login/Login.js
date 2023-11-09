@@ -15,8 +15,8 @@ import { useContext } from 'react';
 import DarkModeSwitch from '../../components/darkmode_switch/DarkModeSwitch';
 import { DarkModeContext } from '../../contexts/DarkThemeContext';
 
-const USER = "admin"
-const PASSWORD = "admin"
+const USER = "usuario"
+const PASSWORD = "demo"
 
 function Copyright(props) {
   const { darkMode } = useContext(DarkModeContext);
@@ -35,7 +35,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
-  const { logged, setLogged, currentUser, setCurrentUser } = useContext(LoginContext);
+  const { logged, setLogged,  setCurrentUser } = useContext(LoginContext);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
 
