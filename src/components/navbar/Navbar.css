@@ -1,5 +1,12 @@
 .link{
     text-decoration: none;
+    transition: 0.2s;
+    color: rgb(7, 7, 7) !important;
+}
+
+.link:hover{
+    transform: scale(115%);
+    transition: 0.2s;
 }
 
 .darkNavbar {
