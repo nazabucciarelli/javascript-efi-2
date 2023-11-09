@@ -28,35 +28,47 @@ export default function ContactForm() {
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
+            className={darkMode?"darkModeInput":""}
             fullWidth
             label="Name"
             value={name}
+            color={darkMode?"info":"primary"}
+            variant={darkMode?"filled":"outlined"}
             onChange={(e) => setName(e.target.value)}
             margin="normal"
             required
           />
           <TextField
+            className={darkMode?"darkModeInput":""}
             fullWidth
             label="Email"
             value={email}
+            color={darkMode?"info":"primary"}
+            variant={darkMode?"filled":"outlined"}
             onChange={(e) => setEmail(e.target.value)}
             margin="normal"
             required
             type="email"
           />
           <TextField
+            className={darkMode?"darkModeInput":""}
             fullWidth
             label="Subject"
             value={subject}
+            color={darkMode?"info":"primary"}
+            variant={darkMode?"filled":"outlined"}
             onChange={(e) => setSubject(e.target.value)}
             margin="normal"
             required
             type="subject"
           />
           <TextField
+            className={darkMode?"darkModeInput":""}
             fullWidth
             label="Message"
             value={message}
+            color={darkMode?"info":"primary"}
+            variant={darkMode?"filled":"outlined"}
             onChange={(e) => setMessage(e.target.value)}
             margin="normal"
             required

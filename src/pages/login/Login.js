@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import './Login.css'
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -74,10 +75,14 @@ export default function Login() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+            <TextField 
+              className={darkMode?"darkModeInput":""}
               margin="normal"
               required
               fullWidth
+              value={username}
+              color={darkMode?"info":"primary"}
+              variant={darkMode?"filled":"outlined"}
               id="username"
               label="Username"
               name="username"
@@ -85,10 +90,14 @@ export default function Login() {
               autoFocus
               onChange={(e) => setUsername(e.target.value)}
             />
-            <TextField
+            <TextField 
+              className={darkMode?"darkModeInput":""}
               margin="normal"
               required
               fullWidth
+              value={password}
+              color={darkMode?"info":"primary"}
+              variant={darkMode?"filled":"outlined"}
               name="password"
               label="Password"
               type="password"
